@@ -33,10 +33,16 @@ public class Main {
 
         System.out.println("Введите степень многочлена");
         int pow = 0;
-        if (sc.hasNextInt()) {
-            pow = sc.nextInt();
+        while(true){
+            if (sc.hasNextInt()) {
+                pow = sc.nextInt();
+                if(pow <= 10 && pow >= 0) break;
+                else{
+                    System.out.println("Cтепень многочлена должна быть положительной и не превышать 10");
+                }
+            }
         }
-
+        pow++;
 
         System.out.println("Введите коэффициенты многочлена");
         while (pow != 0){

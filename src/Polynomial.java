@@ -77,7 +77,6 @@ public class Polynomial {
                 temp.getPolynomial()[i - m + j] -= a.getPolynomial()[j] * res.getPolynomial()[i - m];
             }
         }
-        //temp.polynomial = this.reverseArray(temp.getPolynomial());
         if(res.polynomial[res.pow - 1] == 0){
             return new Polynomial[]{temp, res};
         }
@@ -110,20 +109,8 @@ public class Polynomial {
         StringBuilder s = new StringBuilder("");
         boolean flag = false;
         for (int i = this.pow - 1; i >= 0; i--) {
-            if (this.polynomial[i] == 0) {
-                flag = true;
-                continue;
-            }
-            if ((this.polynomial[i] > 0) && (i != this.pow - 1) && !flag){
-                s.append(" + ");
-            }
-            flag = false;
-            if ((int)this.polynomial[i] == this.polynomial[i]) {
-                s.append((int)this.polynomial[i]);
-            }
-            else{
-                s.append(this.polynomial[i]);
-            }
+            if(this.polynomial[i] == 0) continue;
+            s.append(this.polynomial[i]);
             if (i == 1) {
                 s.append("x");
             }
@@ -131,8 +118,11 @@ public class Polynomial {
                 s.append("x^");
                 s.append(i);
             }
+            if(this.polynomial[i] > 0)s.append(" ");
         }
-        return s.toString();
+        String str = s.toString().trim();
+        str = str.replaceAll(" ", "+");
+        return str;
     }
 
     @Override
